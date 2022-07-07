@@ -7,9 +7,17 @@
 };
 
 var anim;
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 anim = lottie.loadAnimation(params);
-params.container.onmouseover = playit;
+
+if (!reduceMotion) {
+    params.container.onmouseover = playit;
+}
+else {
+    anim.goToAndStop(anim.getDuration());
+}
+
 anim.onComplete = function () {
     anim.finished = true;
 }

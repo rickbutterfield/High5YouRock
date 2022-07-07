@@ -76,10 +76,18 @@
     // Load animation parameters into lottie
     var anim = lottie.loadAnimation(params);
 
+    // Check if reduce motion is set
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // On mouseover, play animation
-    $animationContainer.addEventListener('mouseover', function () {
-      playit()
-    });
+    if (!reduceMotion) {
+      $animationContainer.addEventListener('mouseover', function () {
+        playit()
+      });
+    }
+    else {
+      anim.goToAndStop(anim.getDuration());
+    }
 
     // On complete event, set anim.finished to true
     anim.addEventListener('complete', function () {
