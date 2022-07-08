@@ -1,4 +1,4 @@
-name: Build, publish and deploy project to UmbHost
+name: Build, publish and deploy STAGING project to UmbHost
 
 on:
   workflow_dispatch: 
@@ -12,7 +12,7 @@ jobs:
   build:
 
     runs-on: windows-latest
-    environment: LIVE
+    environment: DEV
     
     steps:
         - name: Get current date
